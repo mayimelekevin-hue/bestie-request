@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Best Friend?</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#6a11cb,#2575fc);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+}
+
+.card{
+background:#fff;
+width:90%;
+max-width:400px;
+padding:30px;
+border-radius:25px;
+box-shadow:0 15px 35px rgba(0,0,0,.2);
+text-align:center;
+animation:pop .5s ease;
+position:relative;
+}
+
+@keyframes pop{
+from{transform:scale(.8);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+h1{
+color:#333;
+margin-bottom:15px;
+}
+
+p{
+color:#555;
+font-size:18px;
+line-height:1.5;
+margin-bottom:20px;
+}
+
+button{
+padding:14px 28px;
+font-size:18px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+transition:.3s;
+margin:10px;
+}
+
+.yes{
+background:#4CAF50;
+color:white;
+}
+
+.yes:hover{
+transform:scale(1.05);
+}
+
+.no{
+background:#ff4d6d;
+color:white;
+position:absolute;
+}
+
+.next{
+width:100%;
+background:#2575fc;
+color:white;
+}
+
+input{
+width:100%;
+padding:14px;
+font-size:16px;
+border-radius:12px;
+border:2px solid #ddd;
+margin:20px 0;
+}
+
+.page{
+display:none;
+}
+
+.active{
+display:block;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<div id="page1" class="page active">
+<h1>😊 Hey!</h1>
+
+<p>
+I've really enjoyed getting to know you,
+and I honestly think you're an amazing person. 💙
+<br><br>
+So... I wanted to ask you something.
+<br><br>
+<b>Will you be my best friend?</b> 😊
+</p>
+
+<button class="yes" onclick="nextPage(2)">Yes 💙</button>
+<button class="no" id="noBtn">No 🙈</button>
+</div>
+
+<div id="page2" class="page">
+
+<h1>Yay!! 🎉</h1>
+
+<p>
+That made my day! 😊
+<br><br>
+When are we meeting again?
+</p>
+
+<input
+type="text"
+placeholder="Type a day or time">
+
+<button class="next" onclick="nextPage(3)">
+Next ➜
+</button>
+
+</div>
+
+<div id="page3" class="page">
+
+<h1>One Last Thing 📸</h1>
+
+<p>
+Now that we're officially best friends...
+<br><br>
+Can you send me a smiling selfie? 😊
+</p>
+
+<input
+type="file"
+accept="image/*">
+
+<button class="next" onclick="finish()">
+Done ❤️
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+function nextPage(page){
+
+document.querySelectorAll(".page").forEach(function(p){
+p.classList.remove("active");
+});
+
+document.getElementById("page"+page).classList.add("active");
+
+}
+
+function finish(){
+
+alert("Thank you 😊 You're the best!");
+
+}
+
+const no=document.getElementById("noBtn");
+
+function moveButton(){
+
+const x=Math.random()*(window.innerWidth-130);
+
+const y=Math.random()*(window.innerHeight-80);
+
+no.style.left=x+"px";
+no.style.top=y+"px";
+
+}
+
+no.addEventListener("mouseover",moveButton);
+no.addEventListener("touchstart",moveButton);
+no.addEventListener("click",moveButton);
+
+</script>
+
+</body>
+</html>
